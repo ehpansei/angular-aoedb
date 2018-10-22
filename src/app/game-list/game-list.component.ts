@@ -1,26 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Game} from './game.model';
-import {Player} from '../player-list/player.model';
+import {Player} from '../players/player-list/player.model';
 import {GamesApiService} from '../games-api.service';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {merge, of} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-export interface Game {
-  id: number;
-  enemyElo: number;
-  difficulty: number;
-  enemyName: string;
-  result: number;
-  comment: string;
-}
 
 @Component({
   selector: 'app-game-list',
@@ -97,7 +81,6 @@ export class GameListComponent implements OnInit {
           this.dataSource = new MatTableDataSource(games);
           this.dataSource.sort = this.sort;
           this.dataSource.paginator = this.paginator;
-
         },
         error => this.gamesApi.errorCallback(error)
       );

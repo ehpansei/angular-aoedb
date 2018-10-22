@@ -7,7 +7,7 @@ import {FormControl, Validators} from '@angular/forms';
 import {PlayersApiService} from '../players-api.service';
 import {map, startWith} from 'rxjs/operators';
 import {Observable} from 'rxjs';
-import {Player} from '../player-list/player.model';
+import {Player} from '../players/player-list/player.model';
 
 
 export interface Player {

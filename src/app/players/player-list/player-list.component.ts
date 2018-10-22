@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Player} from './player.model';
-import {PlayersApiService} from '../players-api.service';
+import {PlayersApiService} from '../../players-api.service';
 import {MatPaginator, MatSort} from '@angular/material';
 
 @Component({

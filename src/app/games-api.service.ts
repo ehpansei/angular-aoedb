@@ -3,6 +3,7 @@ import {ApiService} from './api.service';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ConstantsService} from './constants.service';
+import {Game} from './game-list/game.model';
 
 
 @Injectable({
@@ -24,12 +25,12 @@ export class GamesApiService implements ApiService {
     return this.httpClient.get(this.API_URL + '/' + id.toString(), this.constants.httpOptions);
   }
 
-  index(): Observable<any> {
+  index(): Observable<Game[]> {
     // console.log(this.constants.httpOptions);
     console.log('Index Games');
     console.log(this.API_URL);
 
-    return this.httpClient.get(this.API_URL, this.constants.httpOptions);
+    return this.httpClient.get<Game[]>(this.API_URL, this.constants.httpOptions);
   }
 
   patch(id: number, values: any[]): void {
@@ -51,13 +52,11 @@ export class GamesApiService implements ApiService {
 
   nextCallback(parameter: any, message: string): any {
     console.log('Next Callback');
-    console.log(message);
-    // console.log(parameter[0].data);
+    console.log(parameter);
 
     if (parameter === undefined) {
       return '';
     } else {
-      // return JSON.parse(parameter);
       return parameter[0];
     }
   }

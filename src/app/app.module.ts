@@ -13,13 +13,14 @@ import {LinechartComponent} from './charts/linechart/linechart.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import {PlayerListComponent} from './player-list/player-list.component';
+import {PlayerListComponent} from './players/player-list/player-list.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {MainNavComponent} from './main-nav/main-nav.component';
-import {AngularMaterialLoaderModule} from './angular-material-loader.module';
-import { CreateGameModalComponent } from './create-game-modal/create-game-modal.component';
+import {AngularMaterialLoaderModule} from './angular-material/angular-material-loader.module';
+import {CreateGameModalComponent} from './create-game-modal/create-game-modal.component';
 import {GameDetailComponent} from './game-list/game-detail/game-detail.component';
-import {PlayerDetailComponent} from './player-list/player-detail/player-detail.component';
+import {PlayerDetailComponent} from './players/player-detail/player-detail.component';
+import {PlayersComponent} from './players/players.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import {PlayerDetailComponent} from './player-list/player-detail/player-detail.c
     DashboardComponent,
     MainNavComponent,
     CreateGameModalComponent,
+    PlayersComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,8 +51,7 @@ import {PlayerDetailComponent} from './player-list/player-detail/player-detail.c
     CreateGameModalComponent
   ],
   exports: [],
-  providers: [
-  ],
+  providers: [],
   bootstrap: [
     AppComponent
   ]

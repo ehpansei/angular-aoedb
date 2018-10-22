@@ -21,7 +21,7 @@ export class GamesApiService implements ApiService {
 
 
   get(id: number): Observable<any> {
-    return this.httpClient.get(this.API_URL + '/id', this.constants.httpOptions);
+    return this.httpClient.get(this.API_URL + '/' + id.toString(), this.constants.httpOptions);
   }
 
   index(): Observable<any> {

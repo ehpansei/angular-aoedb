@@ -1,3 +1,10 @@
-<p>
-  {{game}}
-</p>
+<div *ngIf="game !== undefined">
+  <p>
+    {{game.id}}
+  </p>
+  <p>
+    {{game.enemyName}}
+  </p>
+</div>
+
+

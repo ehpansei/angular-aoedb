@@ -3,6 +3,8 @@ import {Game} from './game.model';
 import {Player} from '../player-list/player.model';
 import {GamesApiService} from '../games-api.service';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {merge, of} from 'rxjs';
+import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 
 export interface PeriodicElement {
   name: string;
@@ -20,19 +22,6 @@ export interface Game {
   comment: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
-
 @Component({
   selector: 'app-game-list',
   templateUrl: './game-list.component.html',
@@ -40,11 +29,10 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class GameListComponent implements OnInit {
   displayedColumns: string[] = ['enemyName', 'enemyElo', 'myElo', 'result'];
-  games: any;
-  // displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  // dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   dataSource: any;
+
+  isLoadingResults = false;
 
   // sort
   @ViewChild(MatSort) sort: MatSort;
@@ -58,7 +46,7 @@ export class GameListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.init();
+    this.init2();
   }
 
   // get data source for game list
@@ -67,13 +55,49 @@ export class GameListComponent implements OnInit {
     this.gamesApi.index()
       .subscribe(
         response => {
-          this.games = this.gamesApi.nextCallback(response, 'Retrieved Games');
+          const games = this.gamesApi.nextCallback(response, 'Retrieved Games');
 
-          this.dataSource = new MatTableDataSource(this.games);
+          this.dataSource = new MatTableDataSource(games);
           this.dataSource.sort = this.sort;
           this.dataSource.paginator = this.paginator;
 
-          console.log(this.dataSource);
+          // console.log(this.dataSource);
+        },
+        error => this.gamesApi.errorCallback(error)
+      );
+  }
+
+  init2(): void {
+    merge(this.sort.sortChange, this.paginator.page)
+      .pipe(
+        startWith({}),
+        switchMap(() => {
+          this.isLoadingResults = true;
+          // make request (returns observable)
+          return this.gamesApi.index();
+        }),
+        map(data => {
+          // Flip flag to show that loading has finished.
+          this.isLoadingResults = false;
+          // this.isRateLimitReached = false;
+          // this.resultsLength = data.total_count;
+
+          return data;
+        }),
+        catchError(() => {
+          this.isLoadingResults = false;
+          // this.isRateLimitReached = true;
+          return of([]);
+        })
+      )
+      .subscribe(
+        response => {
+          const games = this.gamesApi.nextCallback(response, 'Retrieved Games');
+
+          this.dataSource = new MatTableDataSource(games);
+          this.dataSource.sort = this.sort;
+          this.dataSource.paginator = this.paginator;
+
         },
         error => this.gamesApi.errorCallback(error)
       );

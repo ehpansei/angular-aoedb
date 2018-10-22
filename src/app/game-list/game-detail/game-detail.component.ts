@@ -16,16 +16,26 @@ export class GameDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private gamesApi: GamesApiService
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.id = +this.route.snapshot.paramMap.get('id');
+    console.log(this.id);
 
     // fetch the game from the backend and store it locally
     this.gamesApi.get(this.id)
       .subscribe(
         response => {
           this.game = this.gamesApi.nextCallback(response, 'Retrieving Game Details');
+
+          // console.log(this.game);
+          this.game = new Game(
+            this.game['id'], this.game['enemy_name'],
+            this.game['enemy_elo'], 1000,
+            this.game['result'], this.game['comment']);
+
+          console.log(this.game);
         },
         error => this.gamesApi.errorCallback(error)
       );

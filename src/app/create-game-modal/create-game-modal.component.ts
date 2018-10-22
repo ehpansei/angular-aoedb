@@ -65,25 +65,11 @@ export class CreateGameModalComponent implements OnInit {
   ngOnInit() {
     this.getPlayersNames();
 
-    this.filteredOptions = this.playersOptionsControl.valueChanges
+    this.filteredOptions = this.myControl.valueChanges
       .pipe(
         startWith(''),
         map(value => this._filter(value))
       );
-
-    // this.filteredOptions = this.play/ersOptionsControl.valueChanges
-    //   .pipe(
-    //     startWith<string | any>(''),
-    //     map(value => typeof value === 'string' ? value : value),
-    //     map(name => name ? this._filter(name) : this.options.slice())
-    //   );
-
-    // this.filteredOptions = this.playersOptionsControl.valueChanges
-    //   .pipe(
-    //     startWith<string | Player>(''),
-    //     map(value => typeof value === 'string' ? value : value.name),
-    //     map(name => name ? this._filter(name) : this.options.slice())
-    //   );
 
     console.log(this.filteredOptions);
 
@@ -94,24 +80,34 @@ export class CreateGameModalComponent implements OnInit {
     return player ? player.name : undefined;
   }
 
+  // private _filter(value: string): string[] {
+  //
+  //   // console.log(value);
+  //   const filterValue = value.toLowerCase();
+  //
+  //   return this.options.filter(option => {
+  //     // console.log(option);
+  //     option.toLowerCase().includes(filterValue);
+  //   });
+  // }
+
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
 
-  // private _filter(name: string): Player[] {
-  //
-  //   const filterValue = name.toLowerCase();
-  //
-  //   return this.options.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
-  // }
-
 
   getPlayersNames() {
     this.playersApi.index()
       .subscribe(
-        response => this.options = this.playersApi.nextCallback(response, 'Retrieved Players'),
+        response => {
+          const data = this.playersApi.nextCallback(response, 'Retrieved Players');
+          // console.log(data);
+          this.options = data.map(o => o['name']);
+
+          console.log(this.options);
+        },
         error => this.playersApi.errorCallback(error)
       );
   }

@@ -16,6 +16,8 @@ export class PlayerListComponent implements OnInit {
 
   displayedColumns = ['name'];
 
+  selectedPlayer: any;
+
   // sort
   @ViewChild(MatSort) sort: MatSort;
 
@@ -41,17 +43,22 @@ export class PlayerListComponent implements OnInit {
     console.log(this.players);
   }
 
+  onSelect(row: string) {
+    this.selectedPlayer = row;
+  }
+
 
   public getPlayers() {
     this.playerApi.index().subscribe(
       (data: Player[]) => {
         // console.log('next');
 
-        console.log(data);
         this.players = data;
         this.dataSource = this.players;
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
+        console.log(data);
+
 
       }
     );

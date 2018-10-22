@@ -1,0 +1,51 @@
+<form class="example-form">
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Enemy Name"
+           [(ngModel)]="enemyName"
+           [formControl]="playersOptionsControl"
+           [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+    <!--<mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">-->
+      <!--<mat-option *ngFor="let option of filteredOptions | async" [value]="option">-->
+        <!--{{option.name}}-->
+      <!--</mat-option>-->
+    <!--</mat-autocomplete>-->
+    <!--<mat-autocomplete #auto="matAutocomplete">-->
+    <!--<mat-option *ngFor="let option of options" [value]="option">-->
+    <!--{{option}}-->
+    <!--</mat-option>-->
+    <!--</mat-autocomplete>-->
+    <mat-error *ngIf="enemyNameFormControl.hasError('required')">
+      Enemy Name is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Enemy Elo" type="number" [(ngModel)]="enemyElo" [formControl]="enemyEloFormControl">
+    <mat-error *ngIf="enemyEloFormControl.hasError('required')">
+      Enemy Elo is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <input matInput placeholder="My Elo" type="number" [(ngModel)]="myElo" [formControl]="myEloFormControl">
+    <mat-error *ngIf="myEloFormControl.hasError('required')">
+      My Elo is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <mat-select [(value)]="outcome">
+      <mat-option value="1">Win</mat-option>
+      <mat-option value="2">Defeat</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="store()">Save</button>
+</form>
+
+
+

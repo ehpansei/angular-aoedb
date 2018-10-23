@@ -1,9 +1,18 @@
-<p *ngIf="player === undefined">Seleccionar um Jogador</p>
+<div *ngIf="player !== undefined && selectedPlayer !== undefined">
+  <p >Seleccionar um Jogador</p>
 
 
-<p *ngIf="player !== undefined">
-  {{player.name}}
-</p>
+  <p>
+    {{selectedPlayer['name']}}
+  </p>
+
+  <ul *ngIf="selectedPlayer['games'].length > 0">
+    <li *ngFor="let game of selectedPlayer['games']">
+      <p>game</p>
+    </li>
+  </ul>
+</div>
+
 
 
 <!--<mat-accordion>-->

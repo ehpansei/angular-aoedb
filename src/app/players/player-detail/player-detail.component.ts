@@ -11,27 +11,35 @@ export class PlayerDetailComponent implements OnInit, OnChanges {
 
   selectedPlayer: any;
 
-  @Input() player = new Player(1, '');
+  @Input() player: Player;
 
   constructor(
     private playersApi: PlayersApiService
   ) {
+    this.player = new Player(0, '');
+    console.log('constrc');
   }
 
   ngOnInit() {
+    console.log(this.player);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.getPlayerDetails(this.player.id);
+    console.log('changes');
+    console.log(this.player);
+    if (this.player) {
+      this.getPlayerDetails(this.player.id);
+    }
+
   }
 
-  getPlayerDetails(id_number): any {
-    this.playersApi.get(this.player.id)
+  getPlayerDetails(id: number): any {
+    this.playersApi.get(id)
       .subscribe(
         response => {
-          this.selectedPlayer = this.playersApi.nextCallback(response, 'Fetching Player');
+          const selectedPlayer = this.playersApi.nextCallback(response, 'Fetching Player');
 
-          console.log(this.selectedPlayer);
+          this.selectedPlayer = selectedPlayer['data'];
         },
         error => {
           this.playersApi.errorCallback(error);

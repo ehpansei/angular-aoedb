@@ -1,3 +1,4 @@
+<h2>Register a Game</h2>
 <form class="example-form">
   <mat-form-field class="full-width">
     <input matInput placeholder="Enemy Name"
@@ -9,16 +10,6 @@
         {{option}}
       </mat-option>
     </mat-autocomplete>
-    <!--<mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">-->
-      <!--<mat-option *ngFor="let option of filteredOptions | async" [value]="option">-->
-        <!--{{option.name}}-->
-      <!--</mat-option>-->
-    <!--</mat-autocomplete>-->
-    <!--<mat-autocomplete #auto="matAutocomplete">-->
-    <!--<mat-option *ngFor="let option of options" [value]="option">-->
-    <!--{{option}}-->
-    <!--</mat-option>-->
-    <!--</mat-autocomplete>-->
     <mat-error *ngIf="enemyNameFormControl.hasError('required')">
       Enemy Name is <strong>required</strong>
     </mat-error>

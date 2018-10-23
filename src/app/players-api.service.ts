@@ -19,7 +19,7 @@ export class PlayersApiService implements ApiService {
   }
 
   get(id: number): Observable<any> {
-    return undefined;
+    return this.httpClient.get(this.API_URL + '/' + id.toString(), this.constants.httpOptions);
   }
 
   index(): Observable<any> {

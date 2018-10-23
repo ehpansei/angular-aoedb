@@ -16,8 +16,6 @@ export class PlayersComponent implements OnInit {
   }
 
   onSelectedPlayer(player: Player) {
-    console.log(player);
     this.selectedPlayer = player;
   }
-
 }

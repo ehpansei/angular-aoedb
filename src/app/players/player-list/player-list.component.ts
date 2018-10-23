@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {Player} from './player.model';
 import {PlayersApiService} from '../../players-api.service';
-import {MatPaginator, MatSort} from '@angular/material';
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 
 @Component({
   selector: 'app-player-list',
@@ -9,8 +9,6 @@ import {MatPaginator, MatSort} from '@angular/material';
   styleUrls: ['./player-list.component.css']
 })
 export class PlayerListComponent implements OnInit {
-
-  players: Player[];
 
   dataSource: any;
 
@@ -30,13 +28,13 @@ export class PlayerListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.players = [];
-
     this.getPlayers();
   }
 
-  applyFilter(param: string) {
+  applyFilter(filterValue: string) {
+    console.log(this.dataSource.filter);
 
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   onSelectRow(row: string) {
@@ -44,12 +42,10 @@ export class PlayerListComponent implements OnInit {
     this.selectedPlayer.emit(player);
   }
 
-
   public getPlayers() {
     this.playerApi.index().subscribe(
       (data: Player[]) => {
-        this.players = data;
-        this.dataSource = this.players;
+        this.dataSource = new MatTableDataSource(data);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
       }

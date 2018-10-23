@@ -26,11 +26,7 @@ export class CreateGameModalComponent implements OnInit {
   myElo: number;
   outcome = 1;
 
-  // options: string[] = ['One', 'Two', 'Three'];
   options: string[] = [];
-
-
-  // options: Player[] = [];
 
   enemyNameFormControl = new FormControl('', [
     Validators.required
@@ -45,14 +41,8 @@ export class CreateGameModalComponent implements OnInit {
   ]);
 
   playersOptionsControl = new FormControl();
-  myControl = new FormControl();
 
   filteredOptions: Observable<string[]>;
-
-
-  // outcomeFormControl = new FormControl('', [
-  //   Validators.required
-  // ]);
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -65,31 +55,16 @@ export class CreateGameModalComponent implements OnInit {
   ngOnInit() {
     this.getPlayersNames();
 
-    this.filteredOptions = this.myControl.valueChanges
+    this.filteredOptions = this.playersOptionsControl.valueChanges
       .pipe(
         startWith(''),
         map(value => this._filter(value))
       );
-
-    console.log(this.filteredOptions);
-
-
   }
 
   displayFn(player?: Player): string | undefined {
     return player ? player.name : undefined;
   }
-
-  // private _filter(value: string): string[] {
-  //
-  //   // console.log(value);
-  //   const filterValue = value.toLowerCase();
-  //
-  //   return this.options.filter(option => {
-  //     // console.log(option);
-  //     option.toLowerCase().includes(filterValue);
-  //   });
-  // }
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
@@ -97,16 +72,12 @@ export class CreateGameModalComponent implements OnInit {
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
 
-
   getPlayersNames() {
     this.playersApi.index()
       .subscribe(
         response => {
           const data = this.playersApi.nextCallback(response, 'Retrieved Players');
-          // console.log(data);
           this.options = data.map(o => o['name']);
-
-          console.log(this.options);
         },
         error => this.playersApi.errorCallback(error)
       );
@@ -122,8 +93,17 @@ export class CreateGameModalComponent implements OnInit {
 
     this.gamesApi.store(data)
       .subscribe(
-        response => this.gamesApi.nextCallback(response, 'New Game Stored'),
-        error => this.gamesApi.errorCallback(error)
+        response => {
+          const requestResponse = this.gamesApi.nextCallback(response, 'New Game Stored');
+
+          // console.log('Request Response');
+          console.log(requestResponse);
+
+          this.dialogRef.close();
+        },
+        error => {
+          this.gamesApi.errorCallback(error);
+        }
       );
   }
 

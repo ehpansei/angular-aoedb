@@ -45,7 +45,7 @@ export class GameListComponent implements OnInit {
           this.dataSource.sort = this.sort;
           this.dataSource.paginator = this.paginator;
 
-          // console.log(this.dataSource);
+          console.log(this.dataSource.sort);
         },
         error => this.gamesApi.errorCallback(error)
       );
@@ -78,9 +78,12 @@ export class GameListComponent implements OnInit {
         response => {
           const games = this.gamesApi.nextCallback(response, 'Retrieved Games');
 
-          this.dataSource = new MatTableDataSource(games);
+          this.dataSource = new MatTableDataSource(games[0]);
           this.dataSource.sort = this.sort;
           this.dataSource.paginator = this.paginator;
+
+          console.log(this.dataSource.sort);
+
         },
         error => this.gamesApi.errorCallback(error)
       );

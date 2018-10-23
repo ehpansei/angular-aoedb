@@ -25,19 +25,17 @@ export class PiechartComponent implements OnInit {
     this.gamesApi.getGamesResults()
       .subscribe(
         response => {
-          this.results = this.gamesApi.nextCallback(response, 'Getting game results');
+          const results = this.gamesApi.nextCallback(response, 'Getting game results');
+          this.results = results[0];
+
           // initialize piechart with given results
           this.init(this.results);
         },
         error => this.gamesApi.errorCallback(error)
       );
-
-
   }
 
   private init(data) {
-    console.log(data);
-
     let wins = 0;
     let losses = 0;
 

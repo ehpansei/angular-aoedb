@@ -26,10 +26,6 @@ export class GamesApiService implements ApiService {
   }
 
   index(): Observable<Game[]> {
-    // console.log(this.constants.httpOptions);
-    console.log('Index Games');
-    console.log(this.API_URL);
-
     return this.httpClient.get<Game[]>(this.API_URL, this.constants.httpOptions);
   }
 
@@ -40,8 +36,8 @@ export class GamesApiService implements ApiService {
   }
 
   store(resource: any) {
-    console.log('STORE');
-    console.log(resource);
+    // console.log('STORE');
+    // console.log(resource);
     return this.httpClient.post(this.API_URL, resource, this.constants.httpOptions);
   }
 
@@ -51,13 +47,14 @@ export class GamesApiService implements ApiService {
   }
 
   nextCallback(parameter: any, message: string): any {
-    console.log('Next Callback');
-    console.log(parameter);
+    // console.log('Next Callback');
+    // console.log(parameter);
+    // console.log(parameter['data']);
 
     if (parameter === undefined) {
       return '';
     } else {
-      return parameter[0];
+      return parameter['data'];
     }
   }
 

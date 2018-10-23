@@ -21,15 +21,14 @@ export class GameDetailComponent implements OnInit {
 
   ngOnInit() {
     this.id = +this.route.snapshot.paramMap.get('id');
-    console.log(this.id);
 
     // fetch the game from the backend and store it locally
     this.gamesApi.get(this.id)
       .subscribe(
         response => {
-          this.game = this.gamesApi.nextCallback(response, 'Retrieving Game Details');
+          const game = this.gamesApi.nextCallback(response, 'Retrieving Game Details');
+          this.game = game[0];
 
-          // console.log(this.game);
           this.game = new Game(
             this.game['id'], this.game['enemy_name'],
             this.game['enemy_elo'], 1000,

@@ -18,7 +18,6 @@ export class PlayersApiService implements ApiService {
   destroy(id: number): void {
   }
 
-
   get(id: number): Observable<any> {
     return undefined;
   }
@@ -42,9 +41,9 @@ export class PlayersApiService implements ApiService {
   }
 
   nextCallback(parameter: any, message: string): any {
-    console.log('Next Callback');
-    console.log(message);
-    console.log(parameter);
+    // console.log('Next Callback');
+    // console.log(message);
+    // console.log(parameter);
 
     if (parameter === undefined) {
       return '';

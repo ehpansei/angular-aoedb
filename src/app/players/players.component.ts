@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Player} from './player-list/player.model';
 
 @Component({
   selector: 'app-players',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlayersComponent implements OnInit {
 
+  selectedPlayer: Player;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onSelectedPlayer(player: Player) {
+    console.log(player);
+    this.selectedPlayer = player;
   }
 
 }

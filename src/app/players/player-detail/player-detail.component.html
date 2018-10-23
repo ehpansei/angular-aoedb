@@ -1,3 +1,6 @@
-<p>
-  player-detail works!
+<p *ngIf="player === undefined">Seleccionar um Jogador</p>
+
+
+<p *ngIf="player !== undefined">
+  {{player.name}}
 </p>

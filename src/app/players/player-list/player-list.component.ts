@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {Player} from './player.model';
 import {PlayersApiService} from '../../players-api.service';
 import {MatPaginator, MatSort} from '@angular/material';
@@ -16,7 +16,7 @@ export class PlayerListComponent implements OnInit {
 
   displayedColumns = ['name'];
 
-  selectedPlayer: any;
+  @Output() selectedPlayer = new EventEmitter<Player>();
 
   // sort
   @ViewChild(MatSort) sort: MatSort;
@@ -39,27 +39,19 @@ export class PlayerListComponent implements OnInit {
 
   }
 
-  onClickButton() {
-    console.log(this.players);
-  }
-
-  onSelect(row: string) {
-    this.selectedPlayer = row;
+  onSelectRow(row: string) {
+    const player = new Player(row['id'], row['name']);
+    this.selectedPlayer.emit(player);
   }
 
 
   public getPlayers() {
     this.playerApi.index().subscribe(
       (data: Player[]) => {
-        // console.log('next');
-
         this.players = data;
         this.dataSource = this.players;
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
-        console.log(data);
-
-
       }
     );
   }

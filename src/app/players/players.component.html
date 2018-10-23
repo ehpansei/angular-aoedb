@@ -9,7 +9,7 @@
        fxFlex.xs="45"
        style="flex: 1 1 auto; box-sizing: border-box">
     <!--style="flex: 1 1 auto; box-sizing: border-box"-->
-    <app-player-list></app-player-list>
+    <app-player-list (selectedPlayer)="onSelectedPlayer($event)"></app-player-list>
   </div>
   <div fxFlex="70"
        fxFlex.xs="55"

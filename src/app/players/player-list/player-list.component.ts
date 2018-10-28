@@ -2,6 +2,8 @@ import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core'
 import {Player} from './player.model';
 import {PlayersApiService} from '../../players-api.service';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {merge, of} from 'rxjs';
+import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-player-list',
@@ -12,7 +14,10 @@ export class PlayerListComponent implements OnInit {
 
   dataSource: any;
 
-  displayedColumns = ['name'];
+  // todo add nr of games agaisnt player column
+  displayedColumns = ['name', 'games_count'];
+
+  isLoadingResults = false;
 
   @Output() selectedPlayer = new EventEmitter<Player>();
 
@@ -43,7 +48,26 @@ export class PlayerListComponent implements OnInit {
   }
 
   public getPlayers() {
-    this.playerApi.index().subscribe(
+    merge()
+      .pipe(
+        startWith({}),
+        switchMap(() => {
+          this.isLoadingResults = true;
+          // make request (returns observable)
+          return this.playerApi.index();
+        }),
+        map(data => {
+          // Flip flag to show that loading has finished.
+          this.isLoadingResults = false;
+
+          return data;
+        }),
+        catchError(() => {
+          this.isLoadingResults = false;
+          // this.isRateLimitReached = true;
+          return of([]);
+        })
+      ).subscribe(
       (data: Player[]) => {
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.sort = this.sort;
@@ -51,5 +75,4 @@ export class PlayerListComponent implements OnInit {
       }
     );
   }
-
 }

@@ -1,49 +1,36 @@
+<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+
+<p *ngIf="selectedPlayer === undefined && !isLoadingResults">Seleccionar um jogador</p>
+
 <div *ngIf="player !== undefined && selectedPlayer !== undefined">
-  <p >Seleccionar um Jogador</p>
-
-
   <p>
     {{selectedPlayer['name']}}
   </p>
 
-  <ul *ngIf="selectedPlayer['games'].length > 0">
-    <li *ngFor="let game of selectedPlayer['games']">
-      <p>game</p>
-    </li>
-  </ul>
+  <div style="display: block; overflow-y: auto; height: 100%;">
+    <mat-accordion *ngIf="selectedPlayer['games'].length > 0">
+      <mat-expansion-panel *ngFor="let game of selectedPlayer['games']">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{game['id']}}
+          </mat-panel-title>
+          <mat-panel-description>
+            <span [ngClass]="{
+                  'win': game['result'] === 1,
+                  'loss': game['result'] !== 1
+                  }">
+              <span *ngIf="game['result'] === 1; else loss">
+                Win
+              </span>
+              <ng-template #loss>Loss</ng-template>
+            </span>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <!--Content Here-->
+        <span *ngIf="game['comment'] === null; else comment;">No comment to show</span>
+        <ng-template #comment>{{game['comment']}}</ng-template>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
 </div>
 
-
-
-<!--<mat-accordion>-->
-  <!--<mat-expansion-panel>-->
-    <!--<mat-expansion-panel-header>-->
-      <!--<mat-panel-title>-->
-        <!--Personal data-->
-      <!--</mat-panel-title>-->
-      <!--<mat-panel-description>-->
-        <!--Type your name and age-->
-      <!--</mat-panel-description>-->
-    <!--</mat-expansion-panel-header>-->
-
-    <!--<mat-form-field>-->
-      <!--<input matInput placeholder="First name">-->
-    <!--</mat-form-field>-->
-
-    <!--<mat-form-field>-->
-      <!--<input matInput placeholder="Age">-->
-    <!--</mat-form-field>-->
-  <!--</mat-expansion-panel>-->
-  <!--<mat-expansion-panel (opened)="panelOpenState = true"-->
-                       <!--(closed)="panelOpenState = false">-->
-    <!--<mat-expansion-panel-header>-->
-      <!--<mat-panel-title>-->
-        <!--Self aware panel-->
-      <!--</mat-panel-title>-->
-      <!--<mat-panel-description>-->
-        <!--Currently I am {{panelOpenState ? 'open' : 'closed'}}-->
-      <!--</mat-panel-description>-->
-    <!--</mat-expansion-panel-header>-->
-    <!--<p>I'm visible because I am open</p>-->
-  <!--</mat-expansion-panel>-->
-<!--</mat-accordion>-->

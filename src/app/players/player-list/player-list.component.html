@@ -1,3 +1,5 @@
+<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+
 <mat-form-field class="full-width">
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
 </mat-form-field>
@@ -5,7 +7,12 @@
 
   <ng-container matColumnDef="name">
     <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.name}}</mat-cell>
+    <mat-cell *matCellDef="let element"> {{element['name']}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="games_count">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> No. Games </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element['games_count']}}</mat-cell>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns;"></mat-header-row>

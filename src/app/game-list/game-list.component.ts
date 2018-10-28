@@ -81,9 +81,6 @@ export class GameListComponent implements OnInit {
           this.dataSource = new MatTableDataSource(games[0]);
           this.dataSource.sort = this.sort;
           this.dataSource.paginator = this.paginator;
-
-          console.log(this.dataSource.sort);
-
         },
         error => this.gamesApi.errorCallback(error)
       );

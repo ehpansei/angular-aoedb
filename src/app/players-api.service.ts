@@ -48,7 +48,7 @@ export class PlayersApiService implements ApiService {
     if (parameter === undefined) {
       return '';
     } else {
-      return parameter;
+      return parameter['data'];
     }
   }
 

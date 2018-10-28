@@ -1,10 +1,9 @@
-<!--<app-player-list></app-player-list>-->
-<!--<app-player-detail></app-player-detail>-->
 <div fxFlex
      fxLayout="row"
      fxLayout.sm="column"
      fxLayout.xs="column"
-     style="flex-direction: column; box-sizing: border-box; display:flex; flex: 1 1 0%;">
+     style="flex-direction: column; box-sizing: border-box; display:flex; flex: 1 1 0%;"
+     class="container">
   <div fxFlex="30"
        fxFlex.xs="45"
        style="flex: 1 1 auto; box-sizing: border-box">
@@ -13,7 +12,8 @@
   </div>
   <div fxFlex="70"
        fxFlex.xs="55"
-       style="flex: 1 1 auto; box-sizing: border-box">
+       style="flex: 1 1 auto; box-sizing: border-box;"
+       class="left-margin">
     <app-player-detail [player]="selectedPlayer"></app-player-detail>
   </div>
 </div>

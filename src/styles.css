@@ -8,6 +8,15 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
 .container {
   margin-left: 1em;
   margin-top: 1em;
+  margin-right: 1em;
+}
+
+.left-margin {
+  margin-left: 1em;
+}
+
+.right-margin {
+  margin-right: 1em;
 }
 
 .full-width {

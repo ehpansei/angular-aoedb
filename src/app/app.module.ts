@@ -3,39 +3,27 @@ import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {AppRoutingModule} from './app-routing.module';
-
-import {AppComponent} from './app.component';
-import {GameListComponent} from './game-list/game-list.component';
-import {ChartsComponent} from './charts/charts.component';
-import {PiechartComponent} from './charts/piechart/piechart.component';
-import {LinechartComponent} from './charts/linechart/linechart.component';
-
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import {PlayerListComponent} from './players/player-list/player-list.component';
-import {DashboardComponent} from './dashboard/dashboard.component';
-import {MainNavComponent} from './main-nav/main-nav.component';
+// Modules
+import {AppRoutingModule} from './app-routing.module';
 import {AngularMaterialLoaderModule} from './angular-material/angular-material-loader.module';
+import {DashboardModule} from './dashboard/dashboard.module';
+
+// Custom Components
+import {AppComponent} from './app.component';
+import {MainNavComponent} from './main-nav/main-nav.component';
 import {CreateGameModalComponent} from './create-game-modal/create-game-modal.component';
 import {GameDetailComponent} from './game-list/game-detail/game-detail.component';
-import {PlayerDetailComponent} from './players/player-detail/player-detail.component';
-import {PlayersComponent} from './players/players.component';
+import {PlayersModule} from './players/players.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    GameListComponent,
     GameDetailComponent,
-    PlayerListComponent,
-    PlayerDetailComponent,
-    ChartsComponent,
-    PiechartComponent,
-    LinechartComponent,
-    DashboardComponent,
     MainNavComponent,
     CreateGameModalComponent,
-    PlayersComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +33,9 @@ import {PlayersComponent} from './players/players.component';
     AppRoutingModule,
     AngularMaterialLoaderModule,
     FlexLayoutModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DashboardModule,
+    PlayersModule
   ],
   entryComponents: [
     CreateGameModalComponent

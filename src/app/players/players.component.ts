@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+
+// Entities
 import {Player} from './player-list/player.model';
 
 @Component({

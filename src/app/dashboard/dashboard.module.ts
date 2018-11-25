@@ -2,9 +2,10 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 // Modules
-import {AngularMaterialLoaderModule} from '../angular-material/angular-material-loader.module';
 import {RouterModule} from '@angular/router';
 import {DashboardRoutingModule} from './dashboard-routing.module';
+import {AngularMaterialLoaderModule} from '../angular-material/angular-material-loader.module';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 // Components
 import {DashboardComponent} from './dashboard.component';
@@ -25,6 +26,7 @@ import {ChartsComponent} from '../charts/charts.component';
     CommonModule,
     DashboardRoutingModule,
     AngularMaterialLoaderModule,
+    FlexLayoutModule,
     RouterModule
   ],
   exports: [

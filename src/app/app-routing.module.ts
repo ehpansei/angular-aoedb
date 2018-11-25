@@ -31,7 +31,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [PlayerDetailsResolver]
 })
 export class AppRoutingModule {
 }

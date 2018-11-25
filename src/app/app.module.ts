@@ -8,14 +8,12 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 // Modules
 import {AppRoutingModule} from './app-routing.module';
 import {AngularMaterialLoaderModule} from './angular-material/angular-material-loader.module';
-// import {DashboardModule} from './dashboard/dashboard.module';
 
 // Custom Components
 import {AppComponent} from './app.component';
 import {MainNavComponent} from './main-nav/main-nav.component';
 import {CreateGameModalComponent} from './create-game-modal/create-game-modal.component';
 import {GameDetailComponent} from './game-list/game-detail/game-detail.component';
-import {PlayersModule} from './players/players.module';
 
 
 @NgModule({
@@ -34,8 +32,6 @@ import {PlayersModule} from './players/players.module';
     AngularMaterialLoaderModule,
     FlexLayoutModule,
     ReactiveFormsModule,
-    // DashboardModule,
-    PlayersModule
   ],
   entryComponents: [
     CreateGameModalComponent

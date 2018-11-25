@@ -3,7 +3,7 @@ import {ApiService} from './api.service';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ConstantsService} from './constants.service';
-import {Game} from '../game-list/game.model';
+import {Game} from '../games/game-list/game.model';
 
 
 @Injectable({

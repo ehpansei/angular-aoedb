@@ -1,8 +1,8 @@
 <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
 
-<p *ngIf="selectedPlayer === undefined && !isLoadingResults">Seleccionar um jogador</p>
+<mat-card *ngIf="!selectedPlayer && !isLoadingResults">Seleccionar um jogador</mat-card>
 
-<div *ngIf="player !== undefined && selectedPlayer !== undefined">
+<mat-card *ngIf="player && selectedPlayer && !isLoadingResults">
   <p>
     {{selectedPlayer['name']}}
   </p>
@@ -32,5 +32,5 @@
       </mat-expansion-panel>
     </mat-accordion>
   </div>
-</div>
+</mat-card>
 

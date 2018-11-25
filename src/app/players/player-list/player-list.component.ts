@@ -17,7 +17,7 @@ export class PlayerListComponent implements OnInit {
   // todo add nr of games agaisnt player column
   displayedColumns = ['name', 'games_count'];
 
-  isLoadingResults = false;
+  isLoadingResults = true;
 
   @Output() selectedPlayer = new EventEmitter<Player>();
 
@@ -48,31 +48,18 @@ export class PlayerListComponent implements OnInit {
   }
 
   public getPlayers() {
-    merge()
-      .pipe(
-        startWith({}),
-        switchMap(() => {
-          this.isLoadingResults = true;
-          // make request (returns observable)
-          return this.playerApi.index();
-        }),
-        map(data => {
-          // Flip flag to show that loading has finished.
-          this.isLoadingResults = false;
 
-          return data;
-        }),
-        catchError(() => {
-          this.isLoadingResults = false;
-          // this.isRateLimitReached = true;
-          return of([]);
-        })
-      ).subscribe(
-      (data: Player[]) => {
-        this.dataSource = new MatTableDataSource(data);
+    this.playerApi.index().subscribe(
+      response => {
+
+        this.dataSource = new MatTableDataSource(response);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
-      }
-    );
+
+        this.isLoadingResults = false;
+      },
+      error => {
+        console.log(error);
+      });
   }
 }

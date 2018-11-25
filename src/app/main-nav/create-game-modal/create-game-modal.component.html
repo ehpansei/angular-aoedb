@@ -1,36 +1,52 @@
 <h2>Register a Game</h2>
-<form class="example-form">
+<form [formGroup]="gameFormGroup"
+      class="example-form">
   <mat-form-field class="full-width">
-    <input matInput placeholder="Enemy Name"
-           [(ngModel)]="enemyName"
+    <input matInput
+           formControlName="enemyName"
+           placeholder="Enemy Name"
            [formControl]="playersOptionsControl"
-           [matAutocomplete]="auto">
+           [matAutocomplete]="auto"
+           required
+    >
     <mat-autocomplete #auto="matAutocomplete">
       <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
         {{option}}
       </mat-option>
     </mat-autocomplete>
-    <mat-error *ngIf="enemyNameFormControl.hasError('required')">
+    <mat-error *ngIf="controlEnemyName.hasError('required')">
       Enemy Name is <strong>required</strong>
     </mat-error>
   </mat-form-field>
 
   <mat-form-field class="full-width">
-    <input matInput placeholder="Enemy Elo" type="number" [(ngModel)]="enemyElo" [formControl]="enemyEloFormControl">
-    <mat-error *ngIf="enemyEloFormControl.hasError('required')">
+    <input matInput
+           formControlName="enemyElo"
+           placeholder="Enemy Elo"
+           type="number"
+           required
+    >
+    <mat-error *ngIf="controlEnemyElo.hasError('required')">
       Enemy Elo is <strong>required</strong>
     </mat-error>
   </mat-form-field>
 
   <mat-form-field class="full-width">
-    <input matInput placeholder="My Elo" type="number" [(ngModel)]="myElo" [formControl]="myEloFormControl">
-    <mat-error *ngIf="myEloFormControl.hasError('required')">
+    <input matInput
+           formControlName="myElo"
+           placeholder="My Elo"
+           type="number"
+           required
+    >
+    <mat-error *ngIf="controlMyElo.hasError('required')">
       My Elo is <strong>required</strong>
     </mat-error>
   </mat-form-field>
 
   <mat-form-field class="full-width">
-    <mat-select [(value)]="outcome">
+    <mat-select
+      formControlName="outcome"
+    >
       <mat-option value="1">Win</mat-option>
       <mat-option value="2">Defeat</mat-option>
     </mat-select>

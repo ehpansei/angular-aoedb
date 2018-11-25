@@ -12,7 +12,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 // Custom Components
 import {AppComponent} from './app.component';
 import {MainNavComponent} from './main-nav/main-nav.component';
-import {CreateGameModalComponent} from './create-game-modal/create-game-modal.component';
+import {CreateGameModalComponent} from './main-nav/create-game-modal/create-game-modal.component';
+import { BottomSheetComponent } from './shared/common/bottom-sheet/bottom-sheet.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import {CreateGameModalComponent} from './create-game-modal/create-game-modal.co
     AppComponent,
     MainNavComponent,
     CreateGameModalComponent,
+    BottomSheetComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,8 @@ import {CreateGameModalComponent} from './create-game-modal/create-game-modal.co
     ReactiveFormsModule,
   ],
   entryComponents: [
-    CreateGameModalComponent
+    CreateGameModalComponent,
+    BottomSheetComponent
   ],
   exports: [],
   providers: [],

@@ -1,27 +1,30 @@
 <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
 
-<mat-form-field class="full-width">
-  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-</mat-form-field>
-<mat-table [dataSource]="dataSource" matSort>
+<mat-card *ngIf="!isLoadingResults">
+  <mat-form-field class="full-width">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+  <mat-table [dataSource]="dataSource" matSort>
 
-  <ng-container matColumnDef="name">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element['name']}}</mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element['name']}}</mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="games_count">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> No. Games </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element['games_count']}}</mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="games_count">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> No. Games </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element['games_count']}}</mat-cell>
+    </ng-container>
 
-  <mat-header-row *matHeaderRowDef="displayedColumns;"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;"
-           [class.selected]="row === selectedPlayer"
-           (click)="onSelectRow(row)"></mat-row>
+    <mat-header-row *matHeaderRowDef="displayedColumns;"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"
+             [class.selected]="row === selectedPlayer"
+             (click)="onSelectRow(row)"></mat-row>
 
-</mat-table>
-<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</mat-card>
+
 
 
 

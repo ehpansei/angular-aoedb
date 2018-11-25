@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 
 import {MatDialog} from '@angular/material';
-import {CreateGameModalComponent} from '../create-game-modal/create-game-modal.component';
+import {CreateGameModalComponent} from './create-game-modal/create-game-modal.component';
 
 @Component({
   selector: 'app-main-nav',

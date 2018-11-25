@@ -1,13 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {DashboardComponent} from './dashboard/dashboard.component';
-import {GameDetailComponent} from './game-list/game-detail/game-detail.component';
-import {PlayerDetailComponent} from './players/player-detail/player-detail.component';
-import {PlayersComponent} from './players/players.component';
-import {PlayerDetailsResolver} from './resolvers';
-
-
 const routes: Routes = [
   {
     path: '',

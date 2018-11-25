@@ -1,0 +1,37 @@
+<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+
+<mat-card *ngIf="!isLoadingResults">
+  <mat-form-field class="full-width">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+  <mat-table [dataSource]="dataSource" matSort>
+    <!-- Position Column -->
+    <ng-container matColumnDef="enemyName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Enemy </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.enemyName}}</mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="enemyElo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Enemy Elo </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.enemyElo}}</mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="myElo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> My Elo </mat-header-cell>
+      <mat-cell *matCellDef="let element"> 1000</mat-cell>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="result">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Result </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.result}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns;"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" routerLink="/games/detail/{{row.id}}"></mat-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+</mat-card>

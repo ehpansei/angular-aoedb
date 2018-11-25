@@ -4,7 +4,7 @@ import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 
 // Components
-import {GameListComponent} from '../game-list/game-list.component';
+import {GameListComponent} from '../games/game-list/game-list.component';
 import {PlayerListComponent} from '../players/player-list/player-list.component';
 
 // Angular Material

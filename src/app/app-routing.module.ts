@@ -9,14 +9,22 @@ import {PlayerDetailsResolver} from './resolvers';
 
 
 const routes: Routes = [
-  {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
-  {path: 'dashboard', component: DashboardComponent},
-  {path: 'games/detail/:id', component: GameDetailComponent},
-  {path: 'player-list', component: PlayersComponent},
   {
-    path: 'players/detail/:id',
-    component: PlayerDetailComponent,
-    resolve: {PlayerDetailsResolver}
+    path: '',
+    redirectTo: '/dashboard',
+    pathMatch: 'full'
+  },
+  {
+    path: 'dashboard',
+    loadChildren: './dashboard/dashboard.module#DashboardModule'
+  },
+  {
+    path: 'players',
+    loadChildren: './players/players.module#PlayersModule'
+  },
+  {
+    path: 'games/detail/:id',
+    component: GameDetailComponent
   },
 ];
 

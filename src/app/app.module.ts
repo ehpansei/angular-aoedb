@@ -8,7 +8,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 // Modules
 import {AppRoutingModule} from './app-routing.module';
 import {AngularMaterialLoaderModule} from './angular-material/angular-material-loader.module';
-import {DashboardModule} from './dashboard/dashboard.module';
+// import {DashboardModule} from './dashboard/dashboard.module';
 
 // Custom Components
 import {AppComponent} from './app.component';
@@ -34,7 +34,7 @@ import {PlayersModule} from './players/players.module';
     AngularMaterialLoaderModule,
     FlexLayoutModule,
     ReactiveFormsModule,
-    DashboardModule,
+    // DashboardModule,
     PlayersModule
   ],
   entryComponents: [

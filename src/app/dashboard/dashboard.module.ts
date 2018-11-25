@@ -1,13 +1,17 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
+// Modules
+import {AngularMaterialLoaderModule} from '../angular-material/angular-material-loader.module';
+import {RouterModule} from '@angular/router';
+import {DashboardRoutingModule} from './dashboard-routing.module';
+
+// Components
 import {DashboardComponent} from './dashboard.component';
 import {GameListComponent} from '../game-list/game-list.component';
 import {PiechartComponent} from '../charts/piechart/piechart.component';
 import {LinechartComponent} from '../charts/linechart/linechart.component';
 import {ChartsComponent} from '../charts/charts.component';
-import {AngularMaterialLoaderModule} from '../angular-material/angular-material-loader.module';
-import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -19,6 +23,7 @@ import {RouterModule} from '@angular/router';
   ],
   imports: [
     CommonModule,
+    DashboardRoutingModule,
     AngularMaterialLoaderModule,
     RouterModule
   ],

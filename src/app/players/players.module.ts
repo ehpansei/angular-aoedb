@@ -1,7 +1,14 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {AngularMaterialLoaderModule} from '../angular-material/angular-material-loader.module';
 import {RouterModule} from '@angular/router';
+
+// Routing
+import {PlayersRoutingModule} from './players-routing.module';
+
+// Modules
+import {AngularMaterialLoaderModule} from '../angular-material/angular-material-loader.module';
+
+// Components
 import {PlayerDetailComponent} from './player-detail/player-detail.component';
 import {PlayerListComponent} from './player-list/player-list.component';
 import {PlayersComponent} from './players.component';
@@ -14,6 +21,7 @@ import {PlayersComponent} from './players.component';
   ],
   imports: [
     CommonModule,
+    PlayersRoutingModule,
     AngularMaterialLoaderModule,
     RouterModule
   ],

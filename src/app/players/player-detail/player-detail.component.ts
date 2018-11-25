@@ -1,6 +1,6 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Player} from '../player-list/player.model';
-import {PlayersApiService} from '../../players-api.service';
+import {PlayersApiService} from '../../services/players-api.service';
 import {merge, of} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import {ActivatedRoute} from '@angular/router';

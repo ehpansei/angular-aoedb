@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Game} from './game.model';
 import {Player} from '../players/player-list/player.model';
-import {GamesApiService} from '../games-api.service';
+import {GamesApiService} from '../services/games-api.service';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {merge, of} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
@@ -30,28 +30,28 @@ export class GameListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.init2();
+    this.init();
   }
 
   // get data source for game list
   // configure data source to use sorts and a paginator
+  // init(): void {
+  //   this.gamesApi.index()
+  //     .subscribe(
+  //       response => {
+  //         const games = this.gamesApi.nextCallback(response, 'Retrieved Games');
+  //
+  //         this.dataSource = new MatTableDataSource(games);
+  //         this.dataSource.sort = this.sort;
+  //         this.dataSource.paginator = this.paginator;
+  //
+  //         console.log(this.dataSource.sort);
+  //       },
+  //       error => this.gamesApi.errorCallback(error)
+  //     );
+  // }
+
   init(): void {
-    this.gamesApi.index()
-      .subscribe(
-        response => {
-          const games = this.gamesApi.nextCallback(response, 'Retrieved Games');
-
-          this.dataSource = new MatTableDataSource(games);
-          this.dataSource.sort = this.sort;
-          this.dataSource.paginator = this.paginator;
-
-          console.log(this.dataSource.sort);
-        },
-        error => this.gamesApi.errorCallback(error)
-      );
-  }
-
-  init2(): void {
     merge(this.sort.sortChange, this.paginator.page)
       .pipe(
         startWith({}),

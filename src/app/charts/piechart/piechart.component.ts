@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
 import {Chart} from '../../../../node_modules/chart.js';
-import {GamesApiService} from '../../games-api.service';
+import {GamesApiService} from '../../services/games-api.service';
 
 
 @Component({

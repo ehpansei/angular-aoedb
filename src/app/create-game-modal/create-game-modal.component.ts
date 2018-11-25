@@ -1,10 +1,10 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
-import {GamesApiService} from '../games-api.service';
+import {GamesApiService} from '../services/games-api.service';
 
 import {FormControl, Validators} from '@angular/forms';
-import {PlayersApiService} from '../players-api.service';
+import {PlayersApiService} from '../services/players-api.service';
 import {map, startWith} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {Player} from '../players/player-list/player.model';

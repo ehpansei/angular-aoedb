@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {Player} from './player.model';
-import {PlayersApiService} from '../../players-api.service';
+import {PlayersApiService} from '../../services/players-api.service';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {merge, of} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';

@@ -8,7 +8,7 @@ import {
 import {Observable} from 'rxjs';
 import {map, take} from 'rxjs/operators';
 import {Player} from '../../players/player-list/player.model';
-import {PlayersApiService} from '../../players-api.service';
+import {PlayersApiService} from '../../services/players-api.service';
 
 
 @Injectable()

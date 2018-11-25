@@ -23,8 +23,8 @@ const routes: Routes = [
     loadChildren: './players/players.module#PlayersModule'
   },
   {
-    path: 'games/detail/:id',
-    component: GameDetailComponent
+    path: 'games',
+    loadChildren: './games/games.module#GamesModule'
   },
 ];
 

@@ -15,6 +15,7 @@ export class PlayersComponent implements OnInit {
   ngOnInit() {
   }
 
+
   onSelectedPlayer(player: Player) {
     this.selectedPlayer = player;
   }
